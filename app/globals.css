@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-yellow: #FFD600;
+  --color-black: #0A0A0A;
+  --color-white: #FFFFFF;
+  --color-cream: #F5F0E8;
+  --color-gray-l: #F0EDE8;
+  --color-gray-m: #D8D4CE;
+  --color-gray-t: #888580;
+  --color-ink-red: #8B1A1A;
+  --color-ink-orange: #D4611A;
+
+  --font-bebas: "Impact", sans-serif;
+  --font-oswald: var(--font-oswald);
+  --font-space: var(--font-space-grotesk);
+  --font-special: "Courier New", monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-black font-special overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  .texture-scanlines {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+    mix-blend-mode: multiply;
+  }
+  
+  .texture-scanlines-dark {
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.06) 2px,
+      rgba(0, 0, 0, 0.06) 4px
+    );
+    mix-blend-mode: multiply;
+  }
+
+  .worn-edge-vignette {
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.04);
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(-3deg);
+    }
+    50% {
+      transform: translateY(-16px) rotate(-1deg);
+    }
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* Registration marks via pseudo-elements applied to an element with this class */
+  .registration-marks::before,
+  .registration-marks::after {
+    content: '';
+    @apply absolute pointer-events-none;
+    width: 12px;
+    height: 12px;
+  }
+  .registration-marks::before {
+    top: 16px;
+    left: 16px;
+    border-top: 0.5px solid var(--color-gray-m);
+    border-left: 0.5px solid var(--color-gray-m);
+  }
+  .registration-marks::after {
+    bottom: 16px;
+    right: 16px;
+    border-bottom: 0.5px solid var(--color-gray-m);
+    border-right: 0.5px solid var(--color-gray-m);
+  }
+}
+
