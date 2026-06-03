@@ -6,7 +6,7 @@ import { ShieldCheck, Truck, RotateCcw, Zap } from 'lucide-react';
 const trustItems = [
   { icon: ShieldCheck, text: "CLINICALLY TESTED" },
   { icon: Zap, text: "PREMIUM INGREDIENTS" },
-  { icon: Truck, text: "FREE SHIPPING 500+ MAD" },
+  { icon: Truck, text: "FREE SHIPPING 999+ MAD" },
   { icon: RotateCcw, text: "30-DAY GUARANTEE" },
 ];
 
@@ -16,7 +16,7 @@ export default function TrustBar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-wrap justify-between items-center gap-6 md:gap-4">
           {trustItems.map((item, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

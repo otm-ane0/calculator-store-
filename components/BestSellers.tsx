@@ -5,10 +5,10 @@ import gsap from 'gsap';
 import ProductCard, { Product } from './ProductCard';
 
 const bestSellers: Product[] = [
-  { id: 1, badge: 'BEST SELLER', brand: 'OPTIMUM NUTRITION', name: 'GOLD STANDARD WHEY', price: '750 MAD', reviews: 1042, imageFallback: 'WHEY' },
-  { id: 2, brand: 'APPLIED NUTRITION', name: 'ABE PRE-WORKOUT', price: '320 MAD', reviews: 856, imageFallback: 'PUMP' },
-  { id: 3, badge: 'NEW', brand: 'MUSCLETECH', name: 'CREATINE MONOHYDRATE', price: '250 MAD', reviews: 420, imageFallback: 'CREATINE' },
-  { id: 4, brand: 'DYMATIZE', name: 'ISO100 HYDROLYZED', price: '980 MAD', reviews: 630, imageFallback: 'WHEY' },
+  { id: 1, badge: 'BEST SELLER', brand: 'Tesla', name: 'ISO ZERO 100', price: '830 MAD', reviews: 1042, imageFallback: 'WHEY', image: '/iso tesla.avif' },
+  { id: 2, brand: 'APPLIED NUTRITION', name: 'CREAM OF RICE', price: '450 MAD', reviews: 856, imageFallback: 'PUMP', image: '/cream-of-rice-1.webp' },
+  { id: 3, badge: 'NEW', brand: 'TESLA', name: 'CREATINE MONOHYDRATE', price: '470 MAD', reviews: 420, imageFallback: 'CREATINE', image: '/creatine.webp' },
+  { id: 4, brand: 'RED REX', name: 'BEEF MASS', price: '970 MAD', reviews: 630, imageFallback: 'WHEY', image: '/beef mass.jpg' },
 ];
 
 export default function BestSellers() {
@@ -18,9 +18,9 @@ export default function BestSellers() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (!gridRef.current) return;
-      
+
       const cards = gridRef.current.querySelectorAll('.product-card');
-      
+
       gsap.from(cards, {
         opacity: 0,
         y: 50,

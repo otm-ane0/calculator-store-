@@ -25,7 +25,7 @@ const specialElite = Special_Elite({
 });
 
 export const metadata: Metadata = {
-  title: 'THE SUPPLEMENT STORE',
+  title: 'THE CALCULATOR STORE',
   description: 'Premium Nutrition for Elite Performance',
 };
 

@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import Image from 'next/image';
+import { motion } from 'motion/react';
 import { Star } from 'lucide-react';
-import gsap from 'gsap';
 
 export type Product = {
   id: string | number;
@@ -13,42 +12,25 @@ export type Product = {
   price: string;
   reviews: number;
   imageFallback: string;
+  image?: string;
 };
 
 export default function ProductCard({ product, index }: { product: Product; index: number }) {
-  const imageRef = useRef<HTMLDivElement>(null);
-  
-  const handleMouseEnter = () => {
-    if (imageRef.current) {
-      gsap.to(imageRef.current, {
-        keyframes: [
-          { filter: 'none', duration: 0.02 },
-          { filter: 'drop-shadow(2px 0 0 rgba(255,0,0,0.5)) drop-shadow(-2px 0 0 rgba(0,255,255,0.5))', duration: 0.04 },
-          { filter: 'none', duration: 0.02 }
-        ],
-      });
-    }
-  };
 
   return (
-    <motion.div 
+    <motion.div
       className="product-card bg-cream border-[1.5px] border-gray-m rounded-none flex flex-col group relative overflow-hidden"
-      whileHover={{ 
-        y: -6, 
+      whileHover={{
+        y: -6,
         borderColor: '#0A0A0A',
         transition: { type: 'spring', stiffness: 400, damping: 25 }
       }}
-      onMouseEnter={handleMouseEnter}
     >
       {/* Ink detail frame on hover */}
       <div className="absolute inset-0 border-2 border-black opacity-0 group-hover:opacity-100 mix-blend-multiply pointer-events-none transition-opacity duration-150 z-20"></div>
 
       {/* Image Area */}
-      <div 
-        ref={imageRef}
-        className="relative w-full h-[220px] bg-gray-l flex items-center justify-center texture-scanlines-dark border-b-[1.5px] border-gray-m"
-        style={{ filter: 'url(#grain)' }}
-      >
+      <div className="relative w-full h-[220px] bg-gray-l flex items-center justify-center border-b-[1.5px] border-gray-m">
         {/* Badge */}
         {product.badge && (
           <div className="absolute top-0 left-0 bg-yellow text-black font-oswald text-[9px] font-bold uppercase px-[8px] py-[3px] border-r border-b border-black z-10">
@@ -63,10 +45,20 @@ export default function ProductCard({ product, index }: { product: Product; inde
           </span>
         </div>
 
-        {/* Product Visual Mockup */}
-        <div className="text-black font-bebas text-[40px] opacity-10 drop-shadow-xl select-none rotate-[-5deg]">
-          {product.imageFallback}
-        </div>
+        {/* Product Image */}
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-contain p-4"
+            sizes="(max-width: 768px) 100vw, 25vw"
+          />
+        ) : (
+          <div className="text-black font-bebas text-[40px] opacity-10 drop-shadow-xl select-none rotate-[-5deg]">
+            {product.imageFallback}
+          </div>
+        )}
       </div>
 
       {/* Content Area */}
