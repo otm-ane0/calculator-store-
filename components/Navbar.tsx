@@ -24,20 +24,19 @@ export default function Navbar() {
       initial={{ y: -64 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`fixed top-0 left-0 w-full z-[1000] h-[64px] bg-white transition-colors duration-300 ${
-        scrolled || mobileMenuOpen ? 'border-b-2 border-yellow' : 'border-b-2 border-black'
-      }`}
+      className={`fixed top-0 left-0 w-full z-[1000] h-[64px] bg-white transition-colors duration-300 ${scrolled || mobileMenuOpen ? 'border-b-2 border-yellow' : 'border-b-2 border-black'
+        }`}
     >
       <div className="h-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between relative z-[1001] bg-white">
         {/* Left: Logo Area */}
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center w-7 h-7 rounded-full border-[1.5px] border-ink-red shrink-0">
             <span className="font-oswald text-[7px] font-bold text-ink-red leading-none text-center uppercase">
-              EST.<br/>24
+              EST.<br />24
             </span>
           </div>
           <Link href="/" className="font-bebas text-2xl font-black tracking-tighter text-black uppercase leading-none">
-            THE SUPPLEMENT STORE
+            THE CALCULATOR STORE
           </Link>
         </div>
 
@@ -67,11 +66,11 @@ export default function Navbar() {
               <ShoppingCart size={20} strokeWidth={2} />
             </button>
           </div>
-          
+
           <button className="hidden sm:block bg-yellow text-black font-oswald text-[12px] font-bold uppercase tracking-widest px-6 py-2.5 border-2 border-black rounded-none shadow-[3px_3px_0px_#0A0A0A] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all hover:bg-black hover:text-yellow">
             SHOP NOW
           </button>
-          
+
           <button className="md:hidden text-black" aria-label="Menu" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -90,7 +89,7 @@ export default function Navbar() {
           >
             {/* Texture background wrapper */}
             <div className="absolute inset-0 texture-scanlines opacity-50 pointer-events-none z-[-1]"></div>
-            
+
             <div className="flex flex-col gap-6 relative z-10 w-full max-w-sm mx-auto">
               {links.map((link) => (
                 <Link
@@ -105,20 +104,20 @@ export default function Navbar() {
             </div>
 
             <div className="mt-8 flex flex-col gap-4 relative z-10 w-full max-w-sm mx-auto">
-               <button className="bg-yellow text-black font-oswald text-[14px] font-bold uppercase tracking-widest px-6 py-4 border-2 border-black rounded-none shadow-[3px_3px_0px_#0A0A0A] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all w-full text-center hover:bg-black hover:text-yellow">
-                 SHOP NOW
-               </button>
+              <button className="bg-yellow text-black font-oswald text-[14px] font-bold uppercase tracking-widest px-6 py-4 border-2 border-black rounded-none shadow-[3px_3px_0px_#0A0A0A] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all w-full text-center hover:bg-black hover:text-yellow">
+                SHOP NOW
+              </button>
             </div>
-            
+
             <div className="mt-8 pt-6 border-t border-gray-m flex items-center justify-center gap-10 relative z-10 w-full max-w-sm mx-auto">
               <button className="text-black hover:text-ink-red transition-colors" aria-label="Search" title="Search">
-                 <Search size={22} strokeWidth={2} />
+                <Search size={22} strokeWidth={2} />
               </button>
               <button className="text-black hover:text-ink-red transition-colors" aria-label="User" title="User">
-                 <User size={22} strokeWidth={2} />
+                <User size={22} strokeWidth={2} />
               </button>
               <button className="text-black hover:text-ink-red transition-colors" aria-label="Cart" title="Cart">
-                 <ShoppingCart size={22} strokeWidth={2} />
+                <ShoppingCart size={22} strokeWidth={2} />
               </button>
             </div>
           </motion.div>
