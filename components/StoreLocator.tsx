@@ -8,7 +8,7 @@ const stores = [
   {
     id: 1,
     city: 'FÈS',
-    area: 'VILLE NOUVELLE',
+    area: 'BOURAMANA',
     address: '34 Avenue Hassan II, Ville Nouvelle, Fès',
     phone: '+212 535 00 00 01',
     hours: 'Mon-Sat: 10:00 - 20:00',
@@ -18,7 +18,7 @@ const stores = [
   {
     id: 2,
     city: 'FÈS',
-    area: 'MÉDINA',
+    area: 'ROUTE AIN CHKAF',
     address: '7 Rue Talaa Kebira, Médina, Fès',
     phone: '+212 535 00 00 02',
     hours: 'Mon-Sat: 09:00 - 21:00',

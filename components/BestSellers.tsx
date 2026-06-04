@@ -40,7 +40,7 @@ export default function BestSellers() {
   return (
     <section ref={containerRef} className="relative w-full bg-white py-10 texture-scanlines">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 w-full">
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div ref={gridRef} className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {bestSellers.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}

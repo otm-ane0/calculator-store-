@@ -7,6 +7,11 @@ import BestSellers from '@/components/BestSellers';
 import PromoBanner from '@/components/PromoBanner';
 import GoalSection from '@/components/GoalSection';
 import CollabMarquee from '@/components/CollabMarquee';
+import CreatineShowcase from '@/components/CreatineShowcase';
+import PreWorkoutShowcase from '@/components/PreWorkoutShowcase';
+import WheyShowcase from '@/components/WheyShowcase';
+import MassGainerShowcase from '@/components/MassGainerShowcase';
+import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Testimonials from '@/components/Testimonials';
 import Newsletter from '@/components/Newsletter';
 import StoreLocator from '@/components/StoreLocator';
@@ -26,10 +31,15 @@ export default function Home() {
         <PromoBanner />
         <GoalSection />
         <CollabMarquee />
+        <CreatineShowcase />
+        <PreWorkoutShowcase />
+        <WheyShowcase />
+        <MassGainerShowcase />
         <Testimonials />
         <Newsletter />
         <StoreLocator />
       </main>
+      <WhatsAppFloat />
       <Footer />
     </SmoothScroll>
   );
