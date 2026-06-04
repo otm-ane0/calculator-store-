@@ -11,6 +11,7 @@ import CreatineShowcase from '@/components/CreatineShowcase';
 import PreWorkoutShowcase from '@/components/PreWorkoutShowcase';
 import WheyShowcase from '@/components/WheyShowcase';
 import MassGainerShowcase from '@/components/MassGainerShowcase';
+import MotivationMarquee from '@/components/MotivationMarquee';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Testimonials from '@/components/Testimonials';
 import Newsletter from '@/components/Newsletter';
@@ -35,6 +36,7 @@ export default function Home() {
         <PreWorkoutShowcase />
         <WheyShowcase />
         <MassGainerShowcase />
+        <MotivationMarquee />
         <Testimonials />
         <Newsletter />
         <StoreLocator />

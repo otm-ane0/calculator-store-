@@ -31,12 +31,12 @@ export default function Navbar() {
       <div className="h-full max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between relative z-[1001] bg-black">
         {/* Left: Logo Area */}
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center w-7 h-7 shrink-0">
+          <div className="flex items-center justify-center w-9 h-9 shrink-0">
             <Image
               src="/logo1.png"
               alt="Calculator Store logo"
-              width={50}
-              height={50}
+              width={60}
+              height={60}
               className="object-contain"
               priority
             />
