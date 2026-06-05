@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 const FULL_TEXT = 'THE CALCULATOR STORE';
 const SUBTITLE = 'YOUR TRUSTED DESTINATION';
 
-function useInView(threshold = 0.4) {
+function useInView(threshold = 0.3) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
 
@@ -27,7 +27,7 @@ function useInView(threshold = 0.4) {
 }
 
 export default function StoreDescription() {
-  const { ref, inView } = useInView(0.4);
+  const { ref, inView } = useInView(0.3);
 
   const [displayed, setDisplayed] = useState('');
   const [subtitleDisplayed, setSubtitleDisplayed] = useState('');
@@ -66,10 +66,8 @@ export default function StoreDescription() {
   const restWords = words.join(' ');
 
   return (
-    <section
-      ref={ref}
-      className="relative w-full bg-black py-24 section-wrapper overflow-hidden"
-    >
+    <section ref={ref} className="relative w-full bg-black py-24 section-wrapper overflow-hidden">
+
       {/* Grain */}
       <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
         backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E")',
@@ -82,9 +80,7 @@ export default function StoreDescription() {
         <div className="inline-block border-[2px] border-yellow px-3 py-1 mb-8">
           <span className="font-oswald text-[11px] font-bold tracking-[0.25em] uppercase text-yellow">
             {subtitleDisplayed}
-            {inView && subtitleDisplayed.length < SUBTITLE.length && (
-              <span className="animate-pulse">|</span>
-            )}
+            {inView && !showBody && <span className="animate-pulse">|</span>}
           </span>
         </div>
 
