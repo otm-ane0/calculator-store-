@@ -15,6 +15,7 @@ import MotivationMarquee from '@/components/MotivationMarquee';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
 import Testimonials from '@/components/Testimonials';
 import Newsletter from '@/components/Newsletter';
+import StoreDescription from '@/components/StoreDescription';
 import StoreLocator from '@/components/StoreLocator';
 import Footer from '@/components/Footer';
 import SmoothScroll from '@/components/SmoothScroll';
@@ -39,6 +40,7 @@ export default function Home() {
         <MotivationMarquee />
         <Testimonials />
         <Newsletter />
+        <StoreDescription />
         <StoreLocator />
       </main>
       <WhatsAppFloat />
