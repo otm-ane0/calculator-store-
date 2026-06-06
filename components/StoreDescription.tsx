@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-const FULL_TEXT = 'THE CALCULATOR STORE';
+const LINES = [
+  'The Calculator Store is a trusted destination for students, teachers, engineers, and professionals across Morocco, offering a wide selection of scientific, graphing, financial, and educational calculators.',
+  'Our catalog includes authentic and high-quality calculators from leading brands, designed for mathematics, engineering, finance, science, and academic success.',
+  'We are committed to offering the best quality at competitive prices, combined with fast and secure delivery throughout Morocco.',
+];
+
 const SUBTITLE = 'YOUR TRUSTED DESTINATION';
 
 function useInView(threshold = 0.3) {
@@ -29,41 +34,58 @@ function useInView(threshold = 0.3) {
 export default function StoreDescription() {
   const { ref, inView } = useInView(0.3);
 
-  const [displayed, setDisplayed] = useState('');
   const [subtitleDisplayed, setSubtitleDisplayed] = useState('');
-  const [showBody, setShowBody] = useState(false);
-  const indexRef = useRef(0);
-  const subIndexRef = useRef(0);
+  const [lineTexts, setLineTexts] = useState(['', '', '']);
+  const [currentLine, setCurrentLine] = useState(-1);
+  const [done, setDone] = useState(false);
   const startedRef = useRef(false);
+  const subIndexRef = useRef(0);
 
   useEffect(() => {
     if (!inView || startedRef.current) return;
     startedRef.current = true;
 
-    const interval = setInterval(() => {
-      if (indexRef.current < FULL_TEXT.length) {
-        setDisplayed(FULL_TEXT.slice(0, indexRef.current + 1));
-        indexRef.current++;
+    // First type subtitle
+    const subInterval = setInterval(() => {
+      if (subIndexRef.current < SUBTITLE.length) {
+        setSubtitleDisplayed(SUBTITLE.slice(0, subIndexRef.current + 1));
+        subIndexRef.current++;
       } else {
-        clearInterval(interval);
-        const subInterval = setInterval(() => {
-          if (subIndexRef.current < SUBTITLE.length) {
-            setSubtitleDisplayed(SUBTITLE.slice(0, subIndexRef.current + 1));
-            subIndexRef.current++;
-          } else {
-            clearInterval(subInterval);
-            setTimeout(() => setShowBody(true), 300);
-          }
-        }, 40);
+        clearInterval(subInterval);
+        // Then start body lines
+        setTimeout(() => setCurrentLine(0), 400);
       }
-    }, 60);
+    }, 40);
 
-    return () => clearInterval(interval);
+    return () => clearInterval(subInterval);
   }, [inView]);
 
-  const words = displayed.trim().split(' ');
-  const lastWord = words.pop();
-  const restWords = words.join(' ');
+  useEffect(() => {
+    if (currentLine < 0 || currentLine >= LINES.length) return;
+
+    const fullLine = LINES[currentLine];
+    let charIndex = 0;
+
+    const interval = setInterval(() => {
+      if (charIndex < fullLine.length) {
+        charIndex++;
+        setLineTexts(prev => {
+          const next = [...prev];
+          next[currentLine] = fullLine.slice(0, charIndex);
+          return next;
+        });
+      } else {
+        clearInterval(interval);
+        if (currentLine < LINES.length - 1) {
+          setTimeout(() => setCurrentLine(c => c + 1), 200);
+        } else {
+          setDone(true);
+        }
+      }
+    }, 12);
+
+    return () => clearInterval(interval);
+  }, [currentLine]);
 
   return (
     <section ref={ref} className="relative w-full bg-black py-24 section-wrapper overflow-hidden">
@@ -80,45 +102,35 @@ export default function StoreDescription() {
         <div className="inline-block border-[2px] border-yellow px-3 py-1 mb-8">
           <span className="font-oswald text-[11px] font-bold tracking-[0.25em] uppercase text-yellow">
             {subtitleDisplayed}
-            {inView && !showBody && <span className="animate-pulse">|</span>}
+            {inView && currentLine < 0 && <span className="animate-pulse">|</span>}
           </span>
         </div>
 
-        {/* Main Heading */}
+        {/* Main Heading — smaller */}
         <h2 className="font-bebas leading-[0.9] uppercase mb-10">
-          <div className="text-[72px] md:text-[100px] text-white block">
-            {restWords.length > 0 ? restWords : <span className="opacity-0">_</span>}
+          <div className="text-[40px] md:text-[56px] text-white block">
+            THE CALCULATOR
           </div>
-          {lastWord && (
-            <div className="inline-block bg-yellow px-2">
-              <span className="text-[72px] md:text-[100px] text-black">
-                {lastWord}
-              </span>
-            </div>
-          )}
-          {displayed.length < FULL_TEXT.length && inView && (
-            <span className="text-yellow text-[72px] md:text-[100px] animate-pulse">|</span>
-          )}
+          <div className="inline-block bg-yellow px-2">
+            <span className="text-[40px] md:text-[56px] text-black">
+              STORE
+            </span>
+          </div>
         </h2>
 
-        {/* Body */}
-        <div className={`transition-all duration-700 ${showBody ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-          <div className="w-16 h-[3px] bg-yellow mb-8" />
-          <div className="font-special text-[15px] text-white/60 space-y-4 max-w-2xl leading-relaxed">
-            <p>
-              The Calculator Store is a trusted destination for students, teachers, engineers, and
-              professionals across Morocco, offering a wide selection of scientific, graphing,
-              financial, and educational calculators.
+        {/* Divider */}
+        <div className="w-16 h-[3px] bg-yellow mb-8" />
+
+        {/* Body lines — typewriter */}
+        <div className="font-special text-[15px] text-white/70 space-y-4 max-w-2xl leading-relaxed">
+          {LINES.map((_, i) => (
+            <p key={i} className={`transition-opacity duration-300 ${currentLine >= i ? 'opacity-100' : 'opacity-0'}`}>
+              {lineTexts[i]}
+              {currentLine === i && !done && (
+                <span className="animate-pulse text-yellow">|</span>
+              )}
             </p>
-            <p>
-              Our catalog includes authentic and high-quality calculators from leading brands,
-              designed for mathematics, engineering, finance, science, and academic success.
-            </p>
-            <p>
-              We are committed to offering the best quality at competitive prices, combined with fast
-              and secure delivery throughout Morocco.
-            </p>
-          </div>
+          ))}
         </div>
 
       </div>
