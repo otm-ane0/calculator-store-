@@ -84,7 +84,7 @@ export default function Hero() {
           className="flex justify-between items-center py-3 border-b border-white/30 w-full mb-8 lg:mb-16 mt-4"
         >
           <span className="font-oswald text-[11px] text-white/70 uppercase tracking-[0.2em]">
-            THE SUPPLEMENT STORE — VOL.24 ISSUE.06
+            THE SUPPLEMENT STORE — VOL.26 ISSUE.06
           </span>
           <span className="font-oswald text-[11px] text-white/70 uppercase tracking-[0.2em] hidden sm:block">
             OFFICIAL PERFORMANCE NUTRITION
@@ -96,7 +96,7 @@ export default function Hero() {
 
           {/* Eyebrow badge */}
           <div className="bg-yellow text-black font-oswald text-[11px] font-black uppercase tracking-[0.2em] px-4 py-1 border border-black mb-6 self-start">
-            ELITE GRADE SUPPLEMENTS
+             GRADE SUPPLEMENTS
           </div>
 
           {/* Stacked H1 */}
