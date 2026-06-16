@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, Navigation, Clock, Phone } from 'lucide-react';
+import { Navigation, Clock, Phone, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
+import Image from 'next/image';
 
 const stores = [
   {
@@ -11,7 +12,7 @@ const stores = [
     area: 'BOURAMANA',
     address: '34 Avenue Hassan II, Ville Nouvelle, Fès',
     phone: '+212 535 00 00 01',
-    hours: 'Mon-Sat: 10:00 - 20:00',
+    hours: 'Mon-Sat: 10:00 - 22:00',
     top: '28%',
     left: '66%',
   },
@@ -21,7 +22,7 @@ const stores = [
     area: 'ROUTE AIN CHKAF',
     address: '7 Rue Talaa Kebira, Médina, Fès',
     phone: '+212 535 00 00 02',
-    hours: 'Mon-Sat: 09:00 - 21:00',
+    hours: 'Mon-Sat: 10:00 - 22:00',
     top: '33%',
     left: '69%',
   },
@@ -31,12 +32,11 @@ const stores = [
     area: 'MAARIF',
     address: '12 Rue des Sports, Maarif, Casablanca',
     phone: '+212 522 00 00 00',
-    hours: 'Mon-Sat: 10:00 - 21:00',
+    hours: 'Mon-Sat: 10:00 - 22:00',
     top: '28%',
     left: '38%',
   },
 ];
-
 
 export default function StoreLocator() {
   const [activeStore, setActiveStore] = useState(stores[0].id);
@@ -66,10 +66,11 @@ export default function StoreLocator() {
                 <div
                   key={store.id}
                   onClick={() => setActiveStore(store.id)}
-                  className={`border-[2px] border-black p-6 cursor-pointer transition-all duration-300 relative overflow-hidden group ${isActive
-                    ? 'bg-yellow shadow-[4px_4px_0px_#0A0A0A] -translate-y-1 -translate-x-1'
-                    : 'bg-white hover:bg-cream'
-                    }`}
+                  className={`border-[2px] border-black p-6 cursor-pointer transition-all duration-300 relative overflow-hidden group ${
+                    isActive
+                      ? 'bg-yellow shadow-[4px_4px_0px_#0A0A0A] -translate-y-1 -translate-x-1'
+                      : 'bg-white hover:bg-cream'
+                  }`}
                 >
                   {/* Decorative corner */}
                   {isActive && (
@@ -87,21 +88,15 @@ export default function StoreLocator() {
                   <div className="flex flex-col gap-2 mt-4">
                     <div className="flex items-center gap-3">
                       <Navigation size={14} className={isActive ? 'text-black' : 'text-gray-t'} />
-                      <span className="font-special text-[14px]">
-                        {store.address}
-                      </span>
+                      <span className="font-special text-[14px]">{store.address}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Clock size={14} className={isActive ? 'text-black' : 'text-gray-t'} />
-                      <span className="font-special text-[14px]">
-                        {store.hours}
-                      </span>
+                      <span className="font-special text-[14px]">{store.hours}</span>
                     </div>
                     <div className="flex items-center gap-3">
                       <Phone size={14} className={isActive ? 'text-black' : 'text-gray-t'} />
-                      <span className="font-special text-[14px]">
-                        {store.phone}
-                      </span>
+                      <span className="font-special text-[14px]">{store.phone}</span>
                     </div>
                   </div>
 
@@ -118,7 +113,7 @@ export default function StoreLocator() {
           {/* Right: Map Area */}
           <div className="w-full lg:w-[55%] h-[400px] lg:h-full bg-cream border-[2px] border-black relative overflow-hidden flex items-center justify-center p-2">
 
-            {/* OpenStreetMap iframe — Morocco tight bbox */}
+            {/* OpenStreetMap iframe */}
             <iframe
               src="https://www.openstreetmap.org/export/embed.html?bbox=-13.2%2C27.7%2C-1.2%2C35.9&layer=mapnik"
               className="absolute inset-0 w-full h-full border-0 z-0"
@@ -128,18 +123,18 @@ export default function StoreLocator() {
             />
 
             {/* Grid overlay */}
-            <div className="absolute inset-0 z-10" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,0,0,0.1) 40px, rgba(0,0,0,0.1) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.1) 40px, rgba(0,0,0,0.1) 41px)' }}></div>
+            <div className="absolute inset-0 z-10" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,0,0,0.1) 40px, rgba(0,0,0,0.1) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(0,0,0,0.1) 40px, rgba(0,0,0,0.1) 41px)' }} />
 
             {/* Scanlines */}
-            <div className="absolute inset-0 texture-scanlines-dark z-10 pointer-events-none opacity-50"></div>
+            <div className="absolute inset-0 texture-scanlines-dark z-10 pointer-events-none opacity-50" />
 
-            {/* Crosshair Center */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-black/10 z-10 pointer-events-none"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-[1px] bg-black/10 z-10 pointer-events-none"></div>
+            {/* Crosshair */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[1px] bg-black/10 z-10 pointer-events-none" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full w-[1px] bg-black/10 z-10 pointer-events-none" />
 
-            {/* Radar Sweep Effect */}
+            {/* Radar Sweep */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] aspect-square rounded-full border border-yellow/20 z-10 pointer-events-none">
-              <div className="w-1/2 h-1/2 origin-bottom-right bg-gradient-to-tr from-transparent to-yellow/10 animate-[spin_4s_linear_infinite]"></div>
+              <div className="w-1/2 h-1/2 origin-bottom-right bg-gradient-to-tr from-transparent to-yellow/10 animate-[spin_4s_linear_infinite]" />
             </div>
 
             {/* Markers */}
@@ -149,7 +144,7 @@ export default function StoreLocator() {
               return (
                 <div
                   key={`marker-${store.id}`}
-                  className="absolute z-20 flex flex-col items-center cursor-pointer transition-all duration-500"
+                  className="absolute z-20 flex flex-col items-center cursor-pointer"
                   style={{ top: store.top, left: store.left }}
                   onClick={() => setActiveStore(store.id)}
                 >
@@ -158,13 +153,24 @@ export default function StoreLocator() {
                     transition={isActive ? { duration: 1.5, repeat: Infinity, ease: 'easeInOut' } : {}}
                     className="relative"
                   >
-                    <div className={`w-8 h-8 rounded-full border-2 flex items-center justify-center bg-white ${isActive ? 'border-yellow' : 'border-black'}`}>
-                      <MapPin size={16} className={isActive ? 'text-black fill-yellow' : 'text-black'} strokeWidth={isActive ? 2 : 1.5} />
+                    {/* Logo pin */}
+                    <div className={`w-10 h-10 rounded-full border-[2.5px] flex items-center justify-center bg-white overflow-hidden transition-all duration-300 ${
+                      isActive
+                        ? 'border-yellow shadow-[0_0_0_3px_rgba(234,179,8,0.3)]'
+                        : 'border-black'
+                    }`}>
+                      <Image
+                        src="/logo1.png"
+                        alt={store.city}
+                        width={28}
+                        height={28}
+                        className="object-contain"
+                      />
                     </div>
 
                     {/* Active pulse */}
                     {isActive && (
-                      <div className="absolute -inset-2 bg-yellow rounded-full opacity-30 animate-ping -z-10"></div>
+                      <div className="absolute -inset-2 bg-yellow rounded-full opacity-30 animate-ping -z-10" />
                     )}
                   </motion.div>
 
@@ -178,12 +184,12 @@ export default function StoreLocator() {
               );
             })}
 
-            {/* Map Info Box overlay */}
+            {/* Map Info Box */}
             <div className="absolute bottom-4 right-4 bg-white border-[2px] border-black p-3 z-30 shadow-[4px_4px_0px_#0A0A0A]">
               <div className="flex flex-col gap-1">
                 <span className="font-oswald text-[10px] text-gray-t tracking-widest uppercase">Coordinates</span>
                 <span className="font-space text-[12px] font-bold text-black flex items-center gap-2">
-                  <span className="w-2 h-2 bg-yellow rounded-full border border-black animate-pulse"></span>
+                  <span className="w-2 h-2 bg-yellow rounded-full border border-black animate-pulse" />
                   RADAR ONLINE
                 </span>
               </div>
